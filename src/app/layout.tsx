@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Syne } from "next/font/google"; // Added Syne here
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// Configure Syne for your high-impact headlines
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["800"], // Extra bold for Awwwards-level impact
 });
 
 export const metadata: Metadata = {
@@ -25,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} h-full antialiased`} // Added syne.variable here
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
