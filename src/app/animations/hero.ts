@@ -59,7 +59,7 @@ if (heroSection) {
         
     })
 
-    .set("#hero-section", { opacity: 0 })
+    // .set("#hero-section", { opacity: 0 })
 
 
 

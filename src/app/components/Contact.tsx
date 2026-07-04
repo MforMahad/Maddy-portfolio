@@ -33,10 +33,9 @@ export default function Contact() {
             leading-none
             text-zinc-700
           ">
-            READY TO<br />
-            CREATE?
+           HAVE A PROJECT? 
             <br />
-            SOMETHING AMAZING.
+            LET'S TALK.
           </h2>
   
           {/* Description */}
@@ -65,7 +64,7 @@ export default function Contact() {
             mt-16
           ">
             <a 
-              href="mailto:your@email.com"
+              href="mailto:mformahadkhan@gmail.com"
               className="
                 px-8
                 py-4
@@ -80,7 +79,7 @@ export default function Contact() {
             </a>
   
             <a
-              href="#"
+              href="https://www.linkedin.com/in/mahad-khan-85683025a/"
               className="
                 px-8
                 py-4
@@ -95,7 +94,7 @@ export default function Contact() {
             </a>
   
             <a
-              href="#"
+              href="https://github.com/MforMahad"
               className="
                 px-8
                 py-4

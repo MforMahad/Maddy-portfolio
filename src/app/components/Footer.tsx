@@ -102,22 +102,22 @@ export default function Footer() {
               text-zinc-200
             "
           >
-            <a href="#" className=" hover:text-zinc-500 ">
+            <a href="https://github.com/MforMahad" className=" hover:text-zinc-500 ">
               GitHub →
             </a>
   
-            <a href="#" className="hover:text-zinc-500 ">
+            <a href="https://www.linkedin.com/in/mahad-khan-85683025a/" className="hover:text-zinc-500 ">
               LinkedIn →
             </a>
   
             <a
-              href="mailto:your@email.com"
+              href="mailto:mformahadkhan@gmail.com"
               className="hover:text-zinc-500 "
             >
               Email →
             </a>
   
-            <a href="#" className="hover:text-zinc-500 ">
+            <a href="/resume/Mahad-Khan-Web-Developer-CV.pdf" target="_blank" className="hover:text-zinc-500 ">
               Resume →
             </a>
           </div>
