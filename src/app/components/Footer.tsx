@@ -4,9 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { footerAnimation } from "../animations/footer";
 
-
 export default function Footer() {
-
   const sectionRef = useRef(null);
   const smparaRef = useRef(null);
   const heading1Ref = useRef(null);
@@ -15,46 +13,51 @@ export default function Footer() {
   const socialRef = useRef(null);
   const foot1Ref = useRef(null);
 
-
-  useGSAP(() =>{
-
+  useGSAP(() => {
     footerAnimation({
-
-      section:sectionRef.current,
-      smpara:smparaRef.current,
-      heading1:heading1Ref.current,
-      heading2:heading2Ref.current,
-      text:textRef.current,
-      socials:socialRef.current,
-      foot1:foot1Ref.current
-
+      section: sectionRef.current,
+      smpara: smparaRef.current,
+      heading1: heading1Ref.current,
+      heading2: heading2Ref.current,
+      text: textRef.current,
+      socials: socialRef.current,
+      foot1: foot1Ref.current,
     });
   });
 
-    return (
-      <footer ref={sectionRef} className="h-screen bg-zinc-900 overflow-hidden px-2 md:px-12 py-12 md:py-0 pt-42 md:pt-42">
-        <div className="max-w-7xl mx-auto">
-  
-          {/* Small Statement */}
-          <p ref={smparaRef} className="uppercase tracking-[0.5em] text-xs text-zinc-500 text-center mb-8">
-            One Idea • One Pixel • One Experience
-          </p>
+  return (
+    <footer
+      ref={sectionRef}
+      className="h-screen bg-zinc-900 overflow-hidden px-2 md:px-12 py-12 md:py-0 pt-42 md:pt-42"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Small Statement */}
+        <p
+          ref={smparaRef}
+          className="uppercase tracking-[0.5em] text-xs text-zinc-500 text-center mb-8"
+        >
+          One Idea • One Pixel • One Experience
+        </p>
 
-          <div className="flex flex-col gap-3 md:gap-9 md:pb-6">
+        <div className="flex flex-col gap-3 md:gap-9 md:pb-6">
           <div className="flex flex-col">
-            <h2 ref={heading1Ref} className=" font-black
+            <h2
+              ref={heading1Ref}
+              className=" font-black
               uppercase
               leading-[0.85]
               text-center
               md:text-end
               text-4xl
               md:text-[7vw]
-              text-white">
-            LET'S BUILD
+              text-white"
+            >
+              LET'S BUILD
             </h2>
-            </div>
-            <div className="flex flex-col">
-            <h2 ref={heading2Ref}
+          </div>
+          <div className="flex flex-col">
+            <h2
+              ref={heading2Ref}
               className="
               font-black
               uppercase
@@ -65,16 +68,17 @@ export default function Footer() {
               
               md:text-[7vw]
               text-white"
-            > TOGETHER.
+            >
+              {" "}
+              TOGETHER.
             </h2>
-            
           </div>
         </div>
-  
-  
-          {/* Description */}
-          <p ref={textRef}
-            className="
+
+        {/* Description */}
+        <p
+          ref={textRef}
+          className="
               max-w-2xl
               mx-auto
               text-center
@@ -84,13 +88,15 @@ export default function Footer() {
               leading-relaxed
               mt-8
             "
-          >
-           Every great product starts with a conversation. Let's build something people will remember.
-          </p>
-  
-          {/* Links */}
-          <div ref={socialRef}
-            className="
+        >
+          Every great product starts with a conversation. Let's build something
+          people will remember.
+        </p>
+
+        {/* Links */}
+        <div
+          ref={socialRef}
+          className="
               flex
               flex-wrap
               justify-center
@@ -101,33 +107,44 @@ export default function Footer() {
               tracking-widest
               text-zinc-200
             "
+        >
+          <a
+            href="https://github.com/MforMahad"
+            className=" hover:text-zinc-500 "
           >
-            <a href="https://github.com/MforMahad" className=" hover:text-zinc-500 ">
-              GitHub →
-            </a>
-  
-            <a href="https://www.linkedin.com/in/mahad-khan-85683025a/" className="hover:text-zinc-500 ">
-              LinkedIn →
-            </a>
-  
-            <a
-              href="mailto:mformahadkhan@gmail.com"
-              className="hover:text-zinc-500 "
-            >
-              Email →
-            </a>
-  
-            <a href="/resume/Mahad-Khan-Web-Developer-CV.pdf" target="_blank" className="hover:text-zinc-500 ">
-              Resume →
-            </a>
-          </div>
-  
-          {/* Divider */}
-          <div className="w-full bg-white border-1 dashed border-zinc-500 mt-50 md:mt-10"></div>
-  
-          {/* Copyright */}
-          <div ref={foot1Ref}
-            className="
+            GitHub →
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/mahad-khan-85683025a/"
+            className="hover:text-zinc-500 "
+          >
+            LinkedIn →
+          </a>
+
+          <a
+            href="mailto:mformahadkhan@gmail.com"
+            className="hover:text-zinc-500 "
+          >
+            Email →
+          </a>
+
+          <a
+            href="/resume/Mahad-Khan-Full-Stack-Developer-CV.pdf"
+            target="_blank"
+            className="hover:text-zinc-500 "
+          >
+            Resume →
+          </a>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full bg-white border-1 dashed border-zinc-500 mt-50 md:mt-10"></div>
+
+        {/* Copyright */}
+        <div
+          ref={foot1Ref}
+          className="
               flex
               flex-col
               md:flex-row
@@ -139,13 +156,14 @@ export default function Footer() {
               text-xs
               text-zinc-500
             "
-          >
-            <p>© 2026 Mahad Khan.</p>
-  
-            <p className="text-center">Designed & Developed with Next.js + TypeScript.</p>
-          </div>
-  
+        >
+          <p>© 2026 Mahad Khan.</p>
+
+          <p className="text-center">
+            Designed & Developed with Next.js + TypeScript.
+          </p>
         </div>
-      </footer>
-    );
-  } 
+      </div>
+    </footer>
+  );
+}
