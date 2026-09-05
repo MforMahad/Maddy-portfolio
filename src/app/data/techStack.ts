@@ -1,4 +1,20 @@
-import {SiReact, SiNextdotjs, SiTypescript,SiTailwindcss, SiGreensock, SiNodedotjs, SiMysql, SiWordpress, SiGit, SiFigma} from "react-icons/si";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiGreensock,
+  SiFramer,
+  SiNodedotjs,
+  SiMongodb,
+  SiMysql,
+  SiSupabase,
+  SiWordpress,
+  SiPhp,
+  SiGit,
+  SiFigma
+} from "react-icons/si";
 
 export const techStack = [
   {
@@ -14,6 +30,10 @@ export const techStack = [
     icon: SiTypescript,
   },
   {
+    name: "JavaScript",
+    icon: SiJavascript,
+  },
+  {
     name: "Tailwind CSS",
     icon: SiTailwindcss,
   },
@@ -22,12 +42,28 @@ export const techStack = [
     icon: SiGreensock,
   },
   {
+    name: "Framer Motion",
+    icon: SiFramer,
+  },
+  {
     name: "Node.js",
     icon: SiNodedotjs,
   },
   {
+    name: "MongoDB",
+    icon: SiMongodb,
+  },
+  {
+    name: "Supabase",
+    icon: SiSupabase,
+  },
+  {
     name: "MySQL",
     icon: SiMysql,
+  },
+  {
+    name: "PHP",
+    icon: SiPhp,
   },
   {
     name: "WordPress",
@@ -36,5 +72,9 @@ export const techStack = [
   {
     name: "Git",
     icon: SiGit,
+  },
+  {
+    name: "Figma",
+    icon: SiFigma,
   },
 ];

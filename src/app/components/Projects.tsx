@@ -1,67 +1,141 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { projects } from "../data/projects";
 import { useGSAP } from "@gsap/react";
-import { projectAnimation } from "../animations/projects";
-export default function Projects() {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
+import {
+  animateProjectsSection,
+  animateImageSwitch,
+} from "../animations/projects";
+
+export default function EditorialProjects() {
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   useGSAP(
     () => {
-      projectAnimation({
-        section: projectsRef.current,
-        grid: gridRef.current,
+      animateProjectsSection({
+        section: sectionRef.current,
         heading: headingRef.current,
+        listContainer: listRef.current,
+        previewContainer: previewRef.current,
       });
     },
-    { scope: projectsRef }
+    { scope: sectionRef }
   );
-  
-  return (
-    <section ref={projectsRef} className="min-h-screen bg-zinc-900 flex flex-col items-center justify-center rounded-b-2xl">
-      <h2 ref={headingRef} className="text-zinc-400 text-4xl md:text-7xl m-6 uppercase font-syne font-extrabold tracking-tight">
-        Projects
-      </h2>
 
-      <div ref={gridRef} className="grid md:grid-cols-3 gap-5 auto-rows-[400px] md:auto-rows-[280px] max-w-7xl mx-auto pb-5 w-full px-4">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
-              index === 0 ? "md:col-span-2 md:row-span-2" : ""
-            }`}
-          >
-            {/* IMAGE */}
-            <img
-              src={project.image}
-              alt={project.title}
-              className="absolute inset-0 w-fullh-full bg-zinc-950 object-contain transition-transform duration-700 group-hover:scale-105"
-            />
-          
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/20" />
-          
-            {/* CONTENT */}
-            <div className="absolute bottom-2 left-0 z-20 p-6 w-full">
-              <h5 className="text-white text-sm md:text-lg font-bold font-syne uppercase">
-                {project.title}
-              </h5>
-              <p className="font-sans hidden md:block text-zinc-400 mt-2 text-sm max-w-md">
-                {project.description}
-              </p>
-              <div className="font-sans flex flex-wrap gap-2 mt-4">
-                {project.tech.map((tech, techIdx) => (
-                  <div key={techIdx} className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white text-xs">
-                    {tech}
+  useEffect(() => {
+    const validImages = imageRefs.current.filter(
+      Boolean
+    ) as HTMLImageElement[];
+    if (validImages.length > 0) {
+      animateImageSwitch(validImages, activeIdx);
+    }
+  }, [activeIdx]);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full min-h-screen bg-zinc-950 text-white py-20 px-6 md:px-16 flex flex-col justify-center"
+    >
+      {/* Centered Section Heading */}
+      <div className="text-center mb-16">
+        <h2
+          ref={headingRef}
+          className="text-zinc-400 text-4xl md:text-6xl font-extrabold tracking-tight uppercase font-syne inline-block pb-4 px-8"
+        >
+          PROJECTS
+        </h2>
+      </div>
+
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Left Column: Project List */}
+        <div
+          ref={listRef}
+          className="lg:col-span-5 flex flex-col divide-y divide-zinc-800/80 z-10"
+        >
+          {projects.map((project, index) => {
+            const isActive = activeIdx === index;
+            return (
+              <a
+                key={index}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={() => setActiveIdx(index)}
+                className={`py-5 transition-transform duration-300 group cursor-pointer flex flex-col ${
+                  isActive ? "translate-x-2" : "hover:translate-x-1"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-xs text-zinc-500">
+                      0{index + 1}
+                    </span>
+                    <h3
+                      className={`text-base md:text-lg font-bold font-syne uppercase tracking-wider transition-colors duration-300 ${
+                        isActive
+                          ? "text-white"
+                          : "text-zinc-500 group-hover:text-zinc-300"
+                      }`}
+                    >
+                      {project.title}
+                    </h3>
                   </div>
-                ))}
-              </div>
-            </div>
+
+                  <span
+                    className={`text-sm transform transition-transform duration-300 ${
+                      isActive
+                        ? "text-white translate-x-1 -translate-y-1"
+                        : "text-zinc-600 group-hover:text-zinc-400"
+                    }`}
+                  >
+                    ↗
+                  </span>
+                </div>
+
+                {/* Subtitle / Tech Tags */}
+                {isActive && (
+                  <div className="mt-2 pl-8 flex items-center gap-2 flex-wrap">
+                    {project.tech?.map((t: string, i: number) => (
+                      <span
+                        key={i}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Right Column: Floating Viewport Frame */}
+        <div className="lg:col-span-7 sticky top-28">
+          <div
+            ref={previewRef}
+            className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-zinc-800/80 bg-zinc-900/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-md"
+          >
+            {projects.map((project, index) => (
+              <img
+                key={index}
+                ref={(el) => {
+                  imageRefs.current[index] = el;
+                }}
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none opacity-0"
+              />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );

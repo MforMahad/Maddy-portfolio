@@ -45,7 +45,7 @@ export default function Experience() {
       {
         year: "2026+",
         role: "Creative Developer",
-        company: "MforMaddy",
+        company: "Freelance",
         description:
           "Building modern web experiences with React, Next.js, TypeScript and creative development.",
       },
